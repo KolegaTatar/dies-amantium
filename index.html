@@ -6,7 +6,13 @@
 <title>💖 Walentynka dla Majusia</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
 
 body{
   min-height:100vh;
@@ -51,7 +57,10 @@ button{
   transition:.25s;
 }
 
-button:active{transform:scale(.96)}
+button:active{
+  transform:scale(.96);
+  opacity:.9;
+}
 
 /* SECTIONS */
 .section{
@@ -150,19 +159,13 @@ button:active{transform:scale(.96)}
   font-size:.9rem;
 }
 
-/* 📱 MOBILE */
+/* MOBILE */
 @media (max-width:600px){
   .menu{
     grid-template-columns:repeat(2,1fr);
   }
-
-  h1{
-    font-size:2.2rem;
-  }
-
-  #typing{
-    font-size:1rem;
-  }
+  h1{font-size:2.2rem}
+  #typing{font-size:1rem}
 }
 </style>
 </head>
@@ -181,6 +184,7 @@ button:active{transform:scale(.96)}
     <button onclick="show('game')">🎮 Gra</button>
     <button onclick="show('secret')">🔒 Sekret</button>
     <button onclick="changeMode()">🎨 Tryb</button>
+    <button onclick="toggleMusic()">🎵 Muzyka</button>
   </div>
 
   <div id="love" class="section">
@@ -217,12 +221,10 @@ button:active{transform:scale(.96)}
   </div>
 </div>
 
-<!-- YouTube MUSIC -->
-<iframe style="display: none;"
-  width="0" height="0"
-  src="https://www.youtube.com/embed/HzCZszfnVt4?autoplay=1&loop=1&playlist=HzCZszfnVt4"
-  allow="autoplay">
-</iframe>
+<!-- AUDIO -->
+<audio id="music" loop preload="auto">
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 /* typing */
@@ -239,7 +241,7 @@ let i=0;
 setInterval(()=>{
   const h=document.createElement("div");
   h.className="heart";
-  h.style.left=Math.random()*100+"vw";
+  h.style.left=(10+Math.random()*80)+"vw";
   h.innerHTML="❤️";
   document.body.appendChild(h);
   setTimeout(()=>h.remove(),6000);
@@ -249,8 +251,8 @@ setInterval(()=>{
 document.addEventListener("click",e=>{
   const s=document.createElement("div");
   s.className="spark";
-  s.style.left=e.pageX+"px";
-  s.style.top=e.pageY+"px";
+  s.style.left=(e.pageX+Math.random()*10-5)+"px";
+  s.style.top=(e.pageY+Math.random()*10-5)+"px";
   s.innerHTML="✨";
   document.body.appendChild(s);
   setTimeout(()=>s.remove(),600);
@@ -265,10 +267,12 @@ function show(id){
 /* reasons */
 const reasons=[
  "Bo Twój uśmiech robi mi dzień ❤️",
- "Bo jesteś cudem 💫",
+ "Bo jesteś cudowna 💫",
  "Bo nikt nie jest jak Ty 😍",
  "Bo jesteś moim szczęściem 💖",
- "Bo jesteś Majusiem 🥹"
+ "Bo jesteś Moim Misiem 🥹",
+ "Bo Twoje oczy to kosmos ✨",
+ "Bo bym Cię schrupał jak Pierniczka 🍪"
 ];
 function nextReason(){
   reason.innerText=reasons[Math.floor(Math.random()*reasons.length)];
@@ -276,9 +280,9 @@ function nextReason(){
 nextReason();
 
 /* days */
-const start=new Date("2023-06-01");
-daysCount.innerText=
- Math.floor((new Date()-start)/(1000*60*60*24))+" dni ❤️";
+const start=new Date("2025-11-06");
+const diff=Math.max(0,Math.floor((new Date()-start)/(1000*60*60*24)));
+daysCount.innerText=diff+" dni ❤️";
 
 /* game */
 const scoreEl=document.getElementById("score");
@@ -295,7 +299,9 @@ function spawn(){
     score++;
     scoreEl.innerText=score;
     localStorage.setItem("score",score);
-    if(score>=10) secretText.innerText="💖 Kocham Cię najbardziej na świecie 💖";
+    if(score>=10){
+      secretText.innerText="💖 Kocham Cię najbardziej na świecie 💖";
+    }
     t.remove();
   };
   gameArea.appendChild(t);
@@ -310,6 +316,31 @@ function changeMode(){
   if(mode===0) document.body.style.background="linear-gradient(135deg,#ff4d6d,#ff8fab)";
   if(mode===1) document.body.style.background="linear-gradient(135deg,#ffb3c6,#ffc8dd)";
   if(mode===2) document.body.style.background="linear-gradient(135deg,#1a1a2e,#e94560)";
+}
+
+/* MUSIC */
+const music=document.getElementById("music");
+let musicPlaying=false;
+
+function toggleMusic(){
+  if(!musicPlaying){
+    music.volume=0.4;
+    music.play().catch(()=>{});
+    musicPlaying=true;
+    toast("🎵 Muzyka włączona");
+  }else{
+    music.pause();
+    musicPlaying=false;
+    toast("⏸️ Muzyka pauza");
+  }
+}
+
+function toast(txt){
+  const d=document.createElement("div");
+  d.className="toast";
+  d.innerText=txt;
+  document.body.appendChild(d);
+  setTimeout(()=>d.remove(),1500);
 }
 </script>
 
