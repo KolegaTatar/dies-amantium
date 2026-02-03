@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>💖 Walentynka dla Majusia</title>
+<link rel="icon" type="image/svg+xml"
+  href="data:image/svg+xml,
+  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+    <text y='0.9em' font-size='90'>❤️</text>
+  </svg>">
+
+<title>💖 Walentynka dla Mai</title>
 
 <style>
 *{
@@ -173,26 +179,35 @@ button:active{
 <body>
 
 <div class="container">
-  <h1>💖 Witaj Majuś 💖</h1>
+  <h1>💖 Witaj Maju 💖</h1>
   <div id="typing"></div>
 
   <div class="menu">
-    <button onclick="show('love')">💌 Miłość</button>
+    <button onclick="show('love')">💌 Wierszyk</button>
     <button onclick="show('why')">💖 Dlaczego</button>
     <button onclick="show('card')">💝 Kartka</button>
     <button onclick="show('days')">📆 Dni</button>
     <button onclick="show('game')">🎮 Gra</button>
     <button onclick="show('secret')">🔒 Sekret</button>
     <button onclick="changeMode()">🎨 Tryb</button>
-    <button onclick="toggleMusic()">🎵 Muzyka</button>
+    <button onclick="toggleMusic()">🎵 Pianinko</button>
   </div>
 
   <div id="love" class="section">
-    <p>Jesteś moją walentynką dziś, jutro i zawsze ❤️</p>
+    <p>Świat może pędzić, zmieniać kolory. <br>
+      Mogą przychodzić deszcze i mroźne pory.  <br>
+      A ja mam swój kompas, co drogę mi wskaże.  <br>
+      I spełnia najsłodsze z miłosnych marzeń. <br>
+      <br>
+      Tyś moją kartką z sercem wyciętym. <br>
+      Najdroższym skarbem, choć niezaklętym. <br>
+      Dziś, jutro i zawsze – to moje wyznanie,  <br>
+      Niech tak już na wieki <br>
+      Pierniczku, zostanie!❤️</p>
   </div>
 
   <div id="why" class="section">
-    <p id="reason"></p>
+    <p id="reason" style="margin-bottom: 0.5rem;"></p>
     <button onclick="nextReason()">Jeszcze 🥰</button>
   </div>
 
@@ -226,9 +241,10 @@ button:active{
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
+
 <script>
 /* typing */
-const text="Każde wejście na tę stronę to jeden uśmiech więcej 💕";
+const text="Każde wejście to jeden uśmiech więcej u Wikusia💕";
 let i=0;
 (function type(){
   if(i<text.length){
@@ -268,11 +284,34 @@ function show(id){
 const reasons=[
  "Bo Twój uśmiech robi mi dzień ❤️",
  "Bo jesteś cudowna 💫",
+ "Bo w Twoich ramionach wszystkie problemy znikają 🤗",
+ "Bo masz najpiękniejszy uśmiech w całym wszechświecie 🌌",
+ "Bo z Tobą nawet zwykły spacer jest magiczny ✨",
+ "Bo jesteś moją bezpieczną przystanią ⚓",
+ "Bo kocham Twój głos, zwłaszcza gdy mówisz 'dzień dobry' 🎙️",
+ "Bo jesteś moim brakującym puzzlem 🧩",
  "Bo nikt nie jest jak Ty 😍",
  "Bo jesteś moim szczęściem 💖",
+ "Bo masz w sobie więcej magii niż wszystkie bajki Disneya 🏰",
+ "Bo z Tobą pizza smakuje 10x lepiej 🍕",
+ "Bo pachniesz najpiękniej na świecie 🌸",
+ "Bo jesteś moim promykiem słońca w pochmurny dzień ☀️",
+ "Bo wierzysz we mnie bardziej niż ja sam 💖",
+ "Bo jesteś moją ulubioną osobą do przytulania 🧸",
+ "Bo masz ten błysk w oku, który mnie rozbraja ⚡",
  "Bo jesteś Moim Misiem 🥹",
+ "Bo znasz mnie na wylot i wciąż tu jesteś 🥹",
+ "Bo sprawiasz, że chcę być lepszym człowiekiem 🏆",
+ "Bo jesteś piękniejsza niż najładniejszy zachód słońca 🌅",
+ "Bo każda chwila bez Ciebie to sekunda stracona ⏱️",
+ "Bo jesteś moją definicją szczęścia 📖",
+ "Bo bez Ciebie wszystko jest po prostu nudne 💤",
+ "Bo jesteś najsłodszym skarbem, jaki spotkałem 💎",
  "Bo Twoje oczy to kosmos ✨",
- "Bo bym Cię schrupał jak Pierniczka 🍪"
+ "Bo bym Cię schrupał jak Pierniczka 🍪",
+ "Bo przy Tobie czuję, że mogę zdobyć świat 💪",
+ "Bo jesteś moją muzą i natchnieniem 🎨",
+ "Bo po prostu jesteś – i to jest najważniejsze ❤️"
 ];
 function nextReason(){
   reason.innerText=reasons[Math.floor(Math.random()*reasons.length)];
@@ -300,7 +339,7 @@ function spawn(){
     scoreEl.innerText=score;
     localStorage.setItem("score",score);
     if(score>=10){
-      secretText.innerText="💖 Kocham Cię najbardziej na świecie 💖";
+      secretText.innerText="💖 Kocham Cię najbardziej na świecie Pierniczku💖";
     }
     t.remove();
   };
